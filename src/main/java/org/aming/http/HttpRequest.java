@@ -44,6 +44,8 @@ public class HttpRequest {
 	public String doPost(String url, Map<String, String> paramsMap) {
 		HttpPost httpPost = new HttpPost(url);
 		httpPost.setEntity(new UrlEncodedFormEntity(toPostParams(paramsMap), Consts.UTF_8));
+		//request.setEntity(new UrlEncodedFormEntity(formparams, "UTF-8"));
+		httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
 		return doHttp(httpPost);
 	}
 

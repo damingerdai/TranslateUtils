@@ -3,6 +3,7 @@ package org.aming.config;
 import java.util.Map;
 
 import org.aming.utils.PropertiesLoader;
+import org.aming.utils.StringUtils;
 
 import com.google.common.collect.Maps;
 
@@ -23,17 +24,6 @@ public final class ApplicationConfiguration {
 	 */
 	private static Map<String, String> map = Maps.newHashMap();
 	
-	 
-	/**
-	 * Helper function to get System property.
-	 * 
-	 * @param key
-	 * @return
-	 */
-	public static String getSystemProperty(String key) {
-		return System.getProperty(key);
-	}
-
 	/**
 	 * 获取application.properties配置文件信息
 	 * 

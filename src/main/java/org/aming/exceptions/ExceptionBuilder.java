@@ -16,13 +16,7 @@ import org.slf4j.Logger;
  */
 public class ExceptionBuilder {
 	private static Logger logger = LoggerManager.getErrorLogger().getLogger();
-	/**
-	 * 创建一个由错误代码引发的AcxionException
-	 * 
-	 * @param errorCode
-	 * @param cause
-	 * @return
-	 */
+ 
 	public static AmingException buildAmingException(String errorCode, Throwable cause) {
 		String errorMsg = ApplicationConfiguration.getProperty(errorCode);
 		AmingException exception = new AmingException(errorCode, errorMsg, cause);
@@ -30,32 +24,22 @@ public class ExceptionBuilder {
 		return exception;
 	}
 	
-	/**
-	 * 创建一个由错误代码引发的AcxionException
-	 * parameter将取代第{ }错误代码属性文件中定义的错误消息。
-	 * @param errorCode
-	 * @param parameter
-	 * @param cause
-	 * @return
-	 */
-	public static AmingException buildAAmingException(String errorCode, String parameter, Throwable cause) {
+	 
+	public static AmingException buildAmingException(String errorCode, String parameter, Throwable cause) {
 		return buildAmingException(errorCode,new String[]{parameter}, cause);
 	}
 
-	/**
-	 * 创建一个由错误代码引发的AcxionException
-	 * parameters将取代第{ }错误代码属性文件中定义的错误消息。
-	 * @param errorCode
-	 * @param parameter
-	 * @param cause
-	 * @return
-	 */
+	 
 	public static AmingException buildAmingException(String errorCode, String[] parameters, Throwable cause) {
 		String errorMsg = ApplicationConfiguration.getProperty(errorCode);
 		errorMsg = getDetailMsg(errorMsg, parameters);
 		AmingException exception = new AmingException(errorCode, errorMsg, cause);
 		log(exception);
 		return exception;
+	}
+	
+	public static AmingException buildAmingException(String errorCode,String...parameters){
+		return buildAmingException(errorCode,parameters,null);
 	}
 	
 	/**
@@ -78,8 +62,7 @@ public class ExceptionBuilder {
 				paraValue = parameters[i];
 				paraValue = paraValue == null ? "" : paraValue;
 				replace = prefix + i + suffix;
-				//arg = StringUtils.replaceAll(arg, replace, paraValue);
-				StringUtils.replace
+				arg = StringUtils.replaceAll(arg, replace, paraValue);
 			}
 		} catch (Exception e) {
 			logger.error("[Error:{}]", e.getMessage());
@@ -101,5 +84,4 @@ public class ExceptionBuilder {
 			logger.error("[ERROR-CODE:{}] [ERROR-MSG:{}]", exception.getErrCode(), exception.getErrMsg());
 		}
 	}
-	
 }
