@@ -3,7 +3,6 @@ package org.aming.translate.impl;
 import java.util.Map;
 
 import org.aming.enums.Language;
-import org.aming.exceptions.AmingException;
 import org.aming.http.HttpRequest;
 import org.aming.translate.AbstractDispatch;
 import org.aming.translate.Dispatch;
@@ -24,7 +23,7 @@ public class YoudaoDispatch extends AbstractDispatch implements Dispatch {
 		return result;
 	}
 	
-	public String translate(String from, String targ, String query) throws AmingException {
+	public String translate(String from, String targ, String query){
 		Map<String,String> paramsMap = initParamsMap(from,targ,query);
 		HttpRequest httpRequest = new HttpRequest();
 		System.out.println(httpRequest.toGetParams(paramsMap));
