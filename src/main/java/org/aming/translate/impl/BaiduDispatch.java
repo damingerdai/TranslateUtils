@@ -27,4 +27,10 @@ public class BaiduDispatch extends AbstractDispatch implements Dispatch {
 		return paramsMap;
 	}
 
+	@Override
+	protected String translate(int from, int targ, String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
