@@ -20,6 +20,12 @@ public class YoudaoDispatch extends AbstractDispatch implements Dispatch {
 		return StringUtils.trim(httpRequest.doGet(URL+"&"+StringUtils.toURLParams(paramsMap)));
 	}
 	
+	 
+	protected String translate(int from, int targ, String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	protected Map<String,String> initParamsMap(String from,String targ,String query){
 		Map<String,String> paramsMap = Maps.newHashMap();
 		paramsMap.put("type",  from+"2"+targ);
@@ -32,5 +38,40 @@ public class YoudaoDispatch extends AbstractDispatch implements Dispatch {
 		paramsMap.put("typoResult", "true");
 		return paramsMap;
 	}
+	
+	/**
+	 * 将标准的语言代码转化为youdao标准的语言代码
+	 * @author aming
+	 * 
+	 */
+	private static enum YoudaoLanguage{
+		EN(1,"EN"),
+		ZH_CN(2,"ZH_CN");
+		private int id;
+		private String status;
+
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public String getStatus() {
+			return status;
+		}
+
+		public void setStatus(String status) {
+			this.status = status;
+		}
+		
+		private YoudaoLanguage(int id,String status){
+			this.id = id;;
+			this.status = status;
+		}
+	}
+
+	
 	
 }

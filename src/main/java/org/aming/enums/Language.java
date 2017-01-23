@@ -1,8 +1,15 @@
 package org.aming.enums;
 
+import org.aming.utils.StringUtils;
+
+/**
+ * 语言代码枚举
+ * @author aming
+ * @version 2017-01-23
+ */
 public enum Language {
-	EN(1,"EN"),
-	ZH_CN(2,"ZH_CN");
+	EN(1,"en"),
+	ZH_CN(2,"zh_ch");
 	private int id;
 	private String status;
 

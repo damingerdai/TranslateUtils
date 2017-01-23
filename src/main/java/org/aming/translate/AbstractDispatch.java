@@ -8,10 +8,12 @@ public abstract class AbstractDispatch implements Dispatch {
 	// final static String URL = null;
  
 	public String translate(Language from, Language targ, String query)  {		 
-		return translate(from.getStatus(),targ.getStatus(),query);
+		return translate(from.getId(),targ.getId(),query);
 	}
 	
 	public abstract String translate(String from,String targ,String query);
+	
+	protected abstract String translate(int from,int targ,String query);
 	
 	protected abstract Map<String,String> initParamsMap(String from,String targ,String query);
 	 
