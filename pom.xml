@@ -45,25 +45,7 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
-		<!-- 代码直接调用log4j会被桥接到slf4j -->
-		<!-- <dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>log4j-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency> -->
-		<!-- 代码直接调用commons-logging会被桥接到slf4j -->
-		<!-- <dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency> -->
-		<!-- 代码直接调用java.util.logging会被桥接到slf4j -->
-		<!-- <dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jul-to-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency> -->
-
+		
 		<!-- general utils begin -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

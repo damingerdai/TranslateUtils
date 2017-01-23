@@ -13,20 +13,13 @@ import com.google.common.collect.Maps;
 public class YoudaoDispatch extends AbstractDispatch implements Dispatch {
 
 	private final static String URL = "http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&smartresult=ugc&sessionFrom=https://www.baidu.com/link";
-	public String translate(Language from, Language targ, String query) {
-		String result = null;
-		try{
-			result = translate(from.getStatus(),targ.getStatus(),query);
-		}catch(Exception e){
-			 
-		}
-		return result;
+	public String translate(Language from, Language targ, String query) { 
+		return translate(from.getStatus(),targ.getStatus(),query);
 	}
 	
 	public String translate(String from, String targ, String query){
 		Map<String,String> paramsMap = initParamsMap(from,targ,query);
 		HttpRequest httpRequest = new HttpRequest();
-		System.out.println(httpRequest.toGetParams(paramsMap));
 		return StringUtils.trim(httpRequest.doGet(URL+"&"+StringUtils.toURLParams(paramsMap)));
 	}
 	
