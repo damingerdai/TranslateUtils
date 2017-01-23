@@ -1,7 +1,5 @@
 package org.aming.enums;
 
-import org.aming.utils.StringUtils;
-
 public enum Language {
 	EN(1,"EN"),
 	ZH_CN(2,"ZH_CN");
@@ -47,3 +45,4 @@ public enum Language {
 		return null;
 	}
 }
+

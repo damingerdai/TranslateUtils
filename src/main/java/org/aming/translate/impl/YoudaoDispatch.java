@@ -13,9 +13,6 @@ import com.google.common.collect.Maps;
 public class YoudaoDispatch extends AbstractDispatch implements Dispatch {
 
 	private final static String URL = "http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&smartresult=ugc&sessionFrom=https://www.baidu.com/link";
-	public String translate(Language from, Language targ, String query) { 
-		return translate(from.getStatus(),targ.getStatus(),query);
-	}
 	
 	public String translate(String from, String targ, String query){
 		Map<String,String> paramsMap = initParamsMap(from,targ,query);
@@ -23,7 +20,7 @@ public class YoudaoDispatch extends AbstractDispatch implements Dispatch {
 		return StringUtils.trim(httpRequest.doGet(URL+"&"+StringUtils.toURLParams(paramsMap)));
 	}
 	
-	private Map<String,String> initParamsMap(String from,String targ,String query){
+	protected Map<String,String> initParamsMap(String from,String targ,String query){
 		Map<String,String> paramsMap = Maps.newHashMap();
 		paramsMap.put("type",  from+"2"+targ);
 		paramsMap.put("i", query);
