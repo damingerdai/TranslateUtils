@@ -1,8 +1,6 @@
 package org.aming.logger;
 
 import java.util.Map;
-
-import org.aming.constants.Constant;
 import org.slf4j.LoggerFactory;
 import com.google.common.collect.Maps;
 
@@ -21,21 +19,6 @@ public class LoggerManager {
 		loggerMap = Maps.newHashMap();
 	}
 	
-	/**
-	 * Return the common logger defined in logger property file
-	 * @return
-	 */
-	public static AmingLogger getSuccessLogger() {
-		return getLogger(Constant.LOGGER_NAME_COMMON);
-	}
-	
-	/**
-	 * Return the error logger defined in logger property file
-	 * @return
-	 */
-	public static AmingLogger getErrorLogger() {
-		return getLogger(Constant.EXCEPTION_LOGGER_NAME);
-	}
 
 	/**
 	 * Return the logger by logger name defined in logger property file

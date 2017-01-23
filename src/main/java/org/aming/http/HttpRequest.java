@@ -33,6 +33,13 @@ import com.google.common.collect.Lists;
 public class HttpRequest {
 	private static AmingLogger logger = LoggerManager.getLogger(HttpRequest.class);
 	
+	public String doGet(String url){
+		HttpGet httpGet = new HttpGet();
+		httpGet.setHeader("Content-Type", "application/json;charset=utf-8");
+		return doHttp(new HttpGet(url));
+		 
+	}
+	
 	public String doGet(String url, Map<String, String> paramsMap) {
 		return doHttp(new HttpGet(url + "?" + toGetParams(paramsMap)));
 	}
@@ -45,7 +52,7 @@ public class HttpRequest {
 		HttpPost httpPost = new HttpPost(url);
 		httpPost.setEntity(new UrlEncodedFormEntity(toPostParams(paramsMap), Consts.UTF_8));
 		//request.setEntity(new UrlEncodedFormEntity(formparams, "UTF-8"));
-		httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
+		httpPost.setHeader("Content-Type", "application/json;charset=utf-8");
 		return doHttp(httpPost);
 	}
 
@@ -87,7 +94,7 @@ public class HttpRequest {
 		return result;
 	}
 	
-	private String toGetParams(Map<String, String> params) {
+	public String toGetParams(Map<String, String> params) {
 		StringBuffer buffer = new StringBuffer();
 		for (Map.Entry<String, String> param : params.entrySet()) {
 			buffer.append("&").append(param.getKey()).append("=").append(param.getValue());

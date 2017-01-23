@@ -7,25 +7,28 @@ import org.aming.exceptions.AmingException;
 import org.aming.http.HttpRequest;
 import org.aming.translate.AbstractDispatch;
 import org.aming.translate.Dispatch;
+import org.aming.utils.StringUtils;
 
 import com.google.common.collect.Maps;
 
 public class YoudaoDispatch extends AbstractDispatch implements Dispatch {
 
 	private final static String URL = "http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&smartresult=ugc&sessionFrom=https://www.baidu.com/link";
-	public String translate(Language from, Language targ, String query) throws AmingException {
+	public String translate(Language from, Language targ, String query) {
+		String result = null;
 		try{
-			translate(from.getStatus(),targ.getStatus(),query);
+			result = translate(from.getStatus(),targ.getStatus(),query);
 		}catch(Exception e){
 			 
 		}
-		return null;
+		return result;
 	}
 	
 	public String translate(String from, String targ, String query) throws AmingException {
 		Map<String,String> paramsMap = initParamsMap(from,targ,query);
 		HttpRequest httpRequest = new HttpRequest();
-		return httpRequest.doPost(URL, paramsMap);
+		System.out.println(httpRequest.toGetParams(paramsMap));
+		return StringUtils.trim(httpRequest.doGet(URL+"&"+StringUtils.toURLParams(paramsMap)));
 	}
 	
 	private Map<String,String> initParamsMap(String from,String targ,String query){
@@ -39,12 +42,6 @@ public class YoudaoDispatch extends AbstractDispatch implements Dispatch {
 		paramsMap.put("action", "FY_BY_CLICKBUTTON");
 		paramsMap.put("typoResult", "true");
 		return paramsMap;
-	}
-
-	 
-	public static void main(String[] args){
-		Dispatch d = new YoudaoDispatch();
-		System.out.println(d.translate(Language.ZH_CN, Language.EN,"你好"));
 	}
 	
 }

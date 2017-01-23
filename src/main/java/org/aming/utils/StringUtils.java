@@ -1,5 +1,7 @@
 package org.aming.utils;
 
+import java.util.Map;
+
 import org.aming.constants.Constant;
 
 /**
@@ -40,5 +42,13 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
 		}
 
 		return arg;
+	}
+	
+	public static String toURLParams(Map<String, String> params) {
+		StringBuffer buffer = new StringBuffer();
+		for (Map.Entry<String, String> param : params.entrySet()) {
+			buffer.append("&").append(param.getKey()).append("=").append(param.getValue());
+		}
+		return buffer.substring(1);
 	}
 }
