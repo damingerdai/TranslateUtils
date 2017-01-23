@@ -6,8 +6,8 @@
 	<artifactId>TranslateUtils</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-	<name>AcxiomDatabaseStatisticsSystem</name>
-	<description>AcxiomDatabaseStatisticsSystem</description>
+	<name>TranslateUtils</name>
+	<description>翻译工具类</description>
 
 	<properties>
 		<spring.version>4.3.5.RELEASE</spring.version>
