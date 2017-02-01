@@ -27,4 +27,16 @@ public class BaiduDispatch extends AbstractDispatch implements Dispatch {
 		return paramsMap;
 	}
 
+	@Override
+	protected String translate(int from, int targ, String query) {
+	 
+		return null;
+	}
+
+	@Override
+	protected Map<String, String> initParamsMap(int from, int targ, String query) {
+		
+		return null;
+	}
+
 }

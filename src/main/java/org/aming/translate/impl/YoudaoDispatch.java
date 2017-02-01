@@ -2,10 +2,10 @@ package org.aming.translate.impl;
 
 import java.util.Map;
 
-import org.aming.enums.Language;
 import org.aming.http.HttpRequest;
 import org.aming.translate.AbstractDispatch;
 import org.aming.translate.Dispatch;
+import org.aming.utils.Assert;
 import org.aming.utils.StringUtils;
 
 import com.google.common.collect.Maps;
@@ -20,10 +20,11 @@ public class YoudaoDispatch extends AbstractDispatch implements Dispatch {
 		return StringUtils.trim(httpRequest.doGet(URL+"&"+StringUtils.toURLParams(paramsMap)));
 	}
 	
-	 
+	
 	protected String translate(int from, int targ, String query) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String,String> paramsMap = initParamsMap(from,targ,query);
+		HttpRequest httpRequest = new HttpRequest();
+		return StringUtils.trim(httpRequest.doGet(URL+"&"+StringUtils.toURLParams(paramsMap)));
 	}
 	
 	protected Map<String,String> initParamsMap(String from,String targ,String query){
@@ -39,12 +40,31 @@ public class YoudaoDispatch extends AbstractDispatch implements Dispatch {
 		return paramsMap;
 	}
 	
+	 
+	protected Map<String, String> initParamsMap(int from, int targ, String query) {
+		return initParamsMap(YoudaoLanguage.getLanguage(from),YoudaoLanguage.getLanguage(from),query);
+	}
+	
+	private Map<String,String> initParamsMap(YoudaoLanguage from,YoudaoLanguage targ,String query){
+		Assert.notNull(from, targ, "from或者targ必须初始化");
+		Map<String,String> paramsMap = Maps.newHashMap();
+		paramsMap.put("type",  from.getStatus()+"2"+targ.getStatus());
+		paramsMap.put("i", query);
+		paramsMap.put("doctype", "json");
+		paramsMap.put("xmlVersion", "1.8");
+		paramsMap.put("keyfrom", "fanyi.web");
+		paramsMap.put("ue", "UTF-8");
+		paramsMap.put("action", "FY_BY_CLICKBUTTON");
+		paramsMap.put("typoResult", "true");
+		return paramsMap;
+	}
+	
 	/**
 	 * 将标准的语言代码转化为youdao标准的语言代码
 	 * @author aming
-	 * 
+	 * @version 2017-02-01
 	 */
-	private static enum YoudaoLanguage{
+	protected static enum YoudaoLanguage {
 		EN(1,"EN"),
 		ZH_CN(2,"ZH_CN");
 		private int id;
@@ -65,13 +85,32 @@ public class YoudaoDispatch extends AbstractDispatch implements Dispatch {
 		public void setStatus(String status) {
 			this.status = status;
 		}
-		
+
 		private YoudaoLanguage(int id,String status){
 			this.id = id;;
 			this.status = status;
 		}
+		
+		public static YoudaoLanguage getLanguage(int status){
+			for(YoudaoLanguage yl:values()){
+				if(yl.id == status){
+					return yl;
+				}
+			}
+			return null;
+		}
+		
+		public static YoudaoLanguage getLanguage(String status){
+			for(YoudaoLanguage yl:values()){
+				if(StringUtils.equalsIgnoreCase(yl.status, status)){
+					return yl;
+				}
+			}
+			return null;
+		}
+		 
 	}
-
 	
-	
+ 
+ 
 }
