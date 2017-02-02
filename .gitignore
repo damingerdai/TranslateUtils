@@ -9,6 +9,6 @@ buildNumber.properties
 .mvn/timing.properties
 .settings
 .classpath
-.projectgit
+.project
 .gitignore
 src/test
