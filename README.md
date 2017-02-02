@@ -57,4 +57,4 @@ public class YoudaoDispathTest {
 
 ***
 *源代码*
-[github]([https://github.com/damingerdai/TranslateUtils](https://github.com/damingerdai/TranslateUtils))
+[github](https://github.com/damingerdai/TranslateUtils](https://github.com/damingerdai/TranslateUtils))
