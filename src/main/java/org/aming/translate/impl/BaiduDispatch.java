@@ -6,6 +6,7 @@ import org.aming.http.HttpRequest;
 import org.aming.translate.AbstractDispatch;
 import org.aming.translate.Dispatch;
 import org.aming.translate.impl.YoudaoDispatch.YoudaoLanguage;
+import org.aming.utils.Assert;
 import org.aming.utils.StringUtils;
 
 import com.google.common.collect.Maps;
@@ -16,7 +17,12 @@ public class BaiduDispatch extends AbstractDispatch implements Dispatch {
 
 	public String translate(String from, String targ, String query) {
 		HttpRequest httpRequest = new HttpRequest();
-		return httpRequest.doPost(URL, initParamsMap(from, targ, query));
+		return StringUtils.trim(httpRequest.doPost(URL, initParamsMap(from, targ, query)));
+	}
+	
+	protected String translate(int from, int targ, String query) {
+		HttpRequest httpRequest = new HttpRequest();
+		return StringUtils.trim(httpRequest.doPost(URL, initParamsMap(from, targ, query)));
 	}
 
 	protected Map<String, String> initParamsMap(String from, String targ, String query) {
@@ -28,26 +34,24 @@ public class BaiduDispatch extends AbstractDispatch implements Dispatch {
 		paramsMap.put("simple_means_flag", "3");
 		return paramsMap;
 	}
-
- 
-	protected String translate(int from, int targ, String query) {
-		return null;
-	}
-
-	 
+	
 	protected Map<String, String> initParamsMap(int from, int targ, String query) {
-
-		return null;
+		return initParamsMap(BaiduLanguage.getLanguage(from),BaiduLanguage.getLanguage(targ),query);
+	}
+	
+	private Map<String,String> initParamsMap(BaiduLanguage from,BaiduLanguage targ,String query){
+		Assert.notNull(from, targ, "from或者targ必须初始化");
+		return initParamsMap(from.getStatus(),targ.getStatus(),query);
 	}
 	
 	/**
-	 * 将标准的语言代码转化为youdao标准的语言代码
+	 * 将标准的语言代码转化为baidu标准的语言代码
 	 * @author aming
-	 * @version 2017-02-01
+	 * @version 2017-02-09
 	 */
 	protected static enum BaiduLanguage {
-		EN(1,"EN"),
-		ZH_CN(2,"ZH_CN");
+		EN(1,"en"),
+		ZH_CN(2,"zh");
 		private int id;
 		private String status;
 
@@ -89,5 +93,5 @@ public class BaiduDispatch extends AbstractDispatch implements Dispatch {
 			}
 			return null;
 		}
-
+	}
 }
