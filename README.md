@@ -24,6 +24,7 @@ TransulateUitls是基于java的翻译工具类。
 ###1.YoudaoDispatch使用示例
 ```JAVA
 public class YoudaoDispathTest {
+
 	@Test
 	public void testYoudaoDispatch(){
 		Dispatch d = new YoudaoDispatch();
@@ -54,7 +55,51 @@ public class YoudaoDispathTest {
         ]
     }
 }
-
+###2.BaiduDispatch使用示例
+```JAVA
+public class BaiduDispatchTest {
+	
+	@Test
+	public void translateTest() {
+		Dispatch d = new BaiduDispatch();
+		System.out.println(d.translate(Language.ZH_CN, Language.EN,"你好"));
+	}
+	
+	 
+}
+```
+返回结果(节选)：
+>{
+    "trans_result": {
+        "from": "en",
+        "to": "zh",
+        "domain": "all",
+        "type": 2,
+        "status": 0,
+        "data": [
+            {
+                "dst": "你好",
+                "src": "hello",
+                "relation": [],
+                "result": [
+                    [
+                        0,
+                        "你好",
+                        [
+                            "0|5"
+                        ],
+                        [],
+                        [
+                            "0|5"
+                        ],
+                        [
+                            "0|6"
+                        ]
+                    ]
+                ]
+            }
+        ],
+        
 ***
 *源代码*
 [github](https://github.com/damingerdai/TranslateUtils](https://github.com/damingerdai/TranslateUtils))
