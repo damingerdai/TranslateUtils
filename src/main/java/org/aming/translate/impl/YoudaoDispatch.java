@@ -38,7 +38,7 @@ public class YoudaoDispatch extends AbstractDispatch implements Dispatch {
 		paramsMap.put("action", "FY_BY_CLICKBUTTON");
 		paramsMap.put("typoResult", "true");
 		return paramsMap;
-	}
+	} 
 	
 	 
 	protected Map<String, String> initParamsMap(int from, int targ, String query) {
@@ -47,16 +47,7 @@ public class YoudaoDispatch extends AbstractDispatch implements Dispatch {
 	
 	private Map<String,String> initParamsMap(YoudaoLanguage from,YoudaoLanguage targ,String query){
 		Assert.notNull(from, targ, "from或者targ必须初始化");
-		Map<String,String> paramsMap = Maps.newHashMap();
-		paramsMap.put("type",  from.getStatus()+"2"+targ.getStatus());
-		paramsMap.put("i", query);
-		paramsMap.put("doctype", "json");
-		paramsMap.put("xmlVersion", "1.8");
-		paramsMap.put("keyfrom", "fanyi.web");
-		paramsMap.put("ue", "UTF-8");
-		paramsMap.put("action", "FY_BY_CLICKBUTTON");
-		paramsMap.put("typoResult", "true");
-		return paramsMap;
+		return initParamsMap(from.getStatus(),targ.getStatus(),query);
 	}
 	
 	/**
