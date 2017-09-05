@@ -1,6 +1,6 @@
 #  TranslateUtils说明
 
-##一、*TranslateUtils简介*
+## 一、*TranslateUtils简介*
 TransulateUitls是基于java的翻译工具类。
 使用的翻译引擎：
 * 有道翻译 (已经实现)
@@ -9,19 +9,19 @@ TransulateUitls是基于java的翻译工具类。
 * 金山翻译(尚未实现)
 * 必应翻译(考虑实现)
 
-##二、*核心类说明*
-###1.Dispatch接口说明
+## 二、*核心类说明*
+### 1.Dispatch接口说明
 	[Dispatch][]接口是TranslateUtils的核心接口，只有[translate][]这一个方法。
 	[translate][]方法一共有三个参数：
 	* from为Language类型，表示需要翻译文本的原始语言
 	* targ为Language类型，表示需要翻译文本的目标语言
 	* query为String类型，表示需要翻译的文本
 	[translate][]方法的返回值是一个JSON格式的
-###2.YoudaoDispatch说明
+### 2.YoudaoDispatch说明
 	[YoudaoDispatch][]是基于有道翻译的Dispatch接口的具体实现。
 
-##三、*使用示例*
-###1.YoudaoDispatch使用示例
+## 三、*使用示例*
+### 1.YoudaoDispatch使用示例
 ```JAVA
 public class YoudaoDispathTest {
 
@@ -55,7 +55,7 @@ public class YoudaoDispathTest {
         ]
     }
 }
-###2.BaiduDispatch使用示例
+### 2.BaiduDispatch使用示例
 ```JAVA
 public class BaiduDispatchTest {
 	
